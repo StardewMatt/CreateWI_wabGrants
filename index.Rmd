@@ -1,13 +1,12 @@
 ---
 title: "Wisconsin Arts Board Grantees"
-subtitle: "Table Generator
 author: "Matthias Goscha"
 description: "A tool for generating quick tables from the WAB Grantees data. Contains FY2023 and FY2024"
 output:
   distill::distill_article:
     self_contained: false
 ---
-```{r echo=TRUE, results= 'hide'}
+```{r echo=FALSE, results= 'hide'}
 library(tidyverse)
 library(dplyr)
 library(janitor)
