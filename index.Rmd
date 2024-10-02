@@ -1,14 +1,37 @@
 ---
-title: "PS270 Final Project"
-author: "Your Name Here"
-description: "My final project"
+title: "Wisconsin Arts Board Grantees"
+subtitle: "Table Generator
+author: "Matthias Goscha"
+description: "A tool for generating quick tables from the WAB Grantees data. Contains FY2023 and FY2024"
 output:
   distill::distill_article:
     self_contained: false
 ---
+```{r echo=TRUE, results= 'hide'}
+library(tidyverse)
+library(dplyr)
+library(janitor)
+wab <- read_csv("data/WABgranteeData.csv")
+```
+##**District Input**
+```{r echo=FALSE, results= 'hide'}
+#Enter the asmDist number below
+assembly <- wab |>
+  filter(asmDist == "")
+
+#Enter the senDist number below
+senate <- wab |>
+  filter(senDist== "1")
+```
 
 
+##**Tables**
+```{r echo=FALSE}
+SenDistTable <- senate |>
+ adorn_totals(where = "row",,,WABgrant,
+              fill = NA,
+              na.rm = TRUE)
 
-## Project thoughts
+knitr::kable(SenDistTable, col.names = c("Year", "County", "City", "Assembly District", "Senate District", "Grantee", "Program", "Grant Amount"), format = "html", padding = 10) 
+```
 
-I am interested in exploring data related to...
